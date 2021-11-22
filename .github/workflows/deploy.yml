@@ -1,18 +1,36 @@
-name: Docker Image CI
+name: build
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - master
+      
   pull_request:
-    branches: [ master ]
+    branches: 
+      - master
+  workflow_dispatch:
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile.prod --tag my-image-name:$(date +%s)
+    - uses: actions/checkout@v1
+    - name: Use Node.js 13.10
+      uses: actions/setup-node@v1
+      with:
+        node-version: '13.10'
+    - name: Install yarn and run unittest
+      run: |
+        yarn
+        yarn test
+      env:
+        CI: true
+    - name: Publish to Github Packages Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: ethergru/hubbers-new-admn/hubbers-admin
+        registry: docker.pkg.github.com
+        username: ${{ secrets.MY_GITHUB_USERNAME }}
+        password: ${{ secrets.MY_GITHUB_TOKEN }}
+        dockerfile: Dockerfile.prod
+        tags: latest
