@@ -28,7 +28,7 @@ jobs:
     - name: Publish to Github Packages Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: ethergru/hubbers-new-admn/hubbers-admin
+        name: ethergru/hubbers-admin
         registry: docker.pkg.github.com
         username: ${{ secrets.MY_GITHUB_USERNAME }}
         password: ${{ secrets.MY_GITHUB_TOKEN }}
