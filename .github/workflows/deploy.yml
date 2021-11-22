@@ -28,7 +28,7 @@ jobs:
     - name: Publish to Github Packages Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: ethergru/devops-app/devops-app
+        name: ethergru/react-digitalocean-devops-template/react-digitalocean-devops-template
         registry: docker.pkg.github.com
         username: ${{ secrets.MY_GITHUB_USERNAME }}
         password: ${{ secrets.MY_GITHUB_TOKEN }}
@@ -48,5 +48,5 @@ jobs:
         script: |
           docker stop $(docker ps -a -q)
           docker login docker.pkg.github.com -u $MY_GITHUB_USERNAME -p $MY_GITHUB_TOKEN
-          docker pull docker.pkg.github.com/ethergru/devops-app/devops-app:prod
-          docker run -dit -p 80:80 docker.pkg.github.com/ethergru/devops-app/devops-app:prod
+          docker pull docker.pkg.github.com/ethergru/react-digitalocean-devops-template/react-digitalocean-devops-template:prod
+          docker run -dit -p 80:80 docker.pkg.github.com/ethergru/react-digitalocean-devops-template/react-digitalocean-devops-template:prod
