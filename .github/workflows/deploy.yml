@@ -35,18 +35,18 @@ jobs:
         dockerfile: Dockerfile.prod
         tags: prod
     - name: Deploy package to digitalocean
-        uses: appleboy/ssh-action@master
-        env:
-          MY_GITHUB_USERNAME: ${{ secrets.MY_GITHUB_USERNAME }}
-          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-        with:
-          host: ${{ secrets.MY_HOST }}
-          username: ${{ secrets.MY_USERNAME }}
-          password: ${{ secrets.MY_PASSWORD }}
-          port: ${{ secrets.MY_PORT }}
-          envs: MY_GITHUB_USERNAME, MY_GITHUB_TOKEN
-          script: |
-            docker stop $(docker ps -a -q)
-            docker login docker.pkg.github.com -u $MY_GITHUB_USERNAME -p $MY_GITHUB_TOKEN
-            docker pull docker.pkg.github.com/ethergru/hubbers-new-admin/hubbers-new-admin:prod
-            docker run -dit -p 80:80 docker.pkg.github.com/ethergru/hubbers-new-admin/hubbers-new-admin:prod
+      uses: appleboy/ssh-action@master
+      env:
+        MY_GITHUB_USERNAME: ${{ secrets.MY_GITHUB_USERNAME }}
+        MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+      with:
+        host: ${{ secrets.MY_HOST }}
+        username: ${{ secrets.MY_USERNAME }}
+        password: ${{ secrets.MY_PASSWORD }}
+        port: ${{ secrets.MY_PORT }}
+        envs: MY_GITHUB_USERNAME, MY_GITHUB_TOKEN
+        script: |
+          docker stop $(docker ps -a -q)
+          docker login docker.pkg.github.com -u $MY_GITHUB_USERNAME -p $MY_GITHUB_TOKEN
+          docker pull docker.pkg.github.com/ethergru/hubbers-new-admin/hubbers-new-admin:prod
+          docker run -dit -p 80:80 docker.pkg.github.com/ethergru/hubbers-new-admin/hubbers-new-admin:prod
