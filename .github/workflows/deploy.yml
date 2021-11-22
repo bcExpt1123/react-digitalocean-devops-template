@@ -33,4 +33,4 @@ jobs:
         username: ${{ secrets.MY_GITHUB_USERNAME }}
         password: ${{ secrets.MY_GITHUB_TOKEN }}
         dockerfile: Dockerfile.prod
-        tags: latest
+        tags: prod
