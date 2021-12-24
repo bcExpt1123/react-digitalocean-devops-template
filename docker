@@ -1,5 +1,0 @@
-. ./.env
-
-docker login -u $GIT_USERNAME -p $GIT_TOKEN docker.pkg.github.com
-
-docker push docker.pkg.github.com/liufa/testdockerandk8/dockerandk8test:0.1
