@@ -20,7 +20,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "bash ./docker"
+      "pre-push": "bash ./docker"
     }
   },
   "eslintConfig": {
