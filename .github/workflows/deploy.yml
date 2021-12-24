@@ -28,7 +28,7 @@ jobs:
     - name: Publish to Github Packages Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: ethergru/react-digitalocean-devops-template/react-digitalocean-devops-template
+        name: ethergru/react-digitalocean-devops-template/react-digitalocean-devops-template:prod
         registry: docker.pkg.github.com
         username: ${{ secrets.MY_GITHUB_USERNAME }}
         password: ${{ secrets.MY_GITHUB_TOKEN }}
